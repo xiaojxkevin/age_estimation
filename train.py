@@ -69,7 +69,10 @@ for epoch in range(1, opts.epochs + 1):
             eval_loss += batch_loss
 
         eval_loss /= (i + 1)
+        writer.add_scalar("eval loss", eval_loss.item(), epoch)
         if eval_loss < best_eval_loss:
             best_eval_loss = eval_loss
-            writer.add_scalar("eval loss", eval_loss.item(), epoch)
-            torch.save(model, os.path.join(opts.ckpt_path, "{:03d}.pth".format(epoch)))
+            save_dir = os.path.join(opts.ckpt_path, current_time)
+            if not os.path.exists(save_dir):
+                os.mkdir(save_dir)
+            torch.save(model, os.path.join(save_dir, "{:03d}.pth".format(epoch)))
