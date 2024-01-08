@@ -1,0 +1,8 @@
+Infant and Toddler: 0-3 years   class = 0
+Preschooler and Kindergartener: 4-6 years  class = 1
+child: 7-12 years class = 2
+adolescent: 13-21 years class = 3
+Adult in the prime : 22-37 years class = 4
+Middle adult: 38-65 years class = 5
+Elderly: 66-84 years class = 6
+Oldest old: 85 years and older class = 7
