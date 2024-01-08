@@ -10,13 +10,15 @@ from tensorboardX import SummaryWriter
 from dl.options import options
 from dl.dataset import Utkface
 
+os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
+
 opts = options()
 device = torch.device(opts.device)
 torch.backends.cudnn.benchmark = True
 
 model = resnet18(pretrained=True)
 num_ftrs = model.fc.in_features  # obtain the number of input features in fc
-model.fc = nn.Linear(num_ftrs, 111)
+model.fc = nn.Linear(num_ftrs, opts.num_class)
 model = model.to(device)
 
 optimizer = optim.AdamW(model.parameters(), lr=opts.lr, weight_decay=opts.weight_decay)
@@ -41,6 +43,7 @@ current_time = time.strftime("%Y-%m-%dT%H:%M", time.localtime())
 writer = SummaryWriter(log_dir=os.path.join(opts.log_path, current_time))
 
 best_eval_loss = float("inf")
+best_model = ""
 for epoch in range(1, opts.epochs + 1):
     model.train()
     train_loss = 0
@@ -61,7 +64,7 @@ for epoch in range(1, opts.epochs + 1):
     with torch.no_grad():
         model.eval()
         eval_loss = 0
-        for i, inputs in enumerate(train_loader):
+        for i, inputs in enumerate(val_loader):
             imgs = inputs["image"].to(device)
             ages = inputs["age"].to(device).type(torch.float)
             pred_ages = model(imgs)
@@ -75,4 +78,22 @@ for epoch in range(1, opts.epochs + 1):
             save_dir = os.path.join(opts.ckpt_path, current_time)
             if not os.path.exists(save_dir):
                 os.mkdir(save_dir)
-            torch.save(model, os.path.join(save_dir, "{:03d}.pth".format(epoch)))
+            best_model = os.path.join(save_dir, "{:03d}.pth".format(epoch))
+            torch.save(model, best_model)
+
+
+with torch.no_grad():
+    test_model = torch.load(best_model, map_location=device)
+    test_model.eval()
+    test_loss = 0
+    for i, inputs in enumerate(test_loader):
+        imgs = inputs["image"].to(device)
+        ages = inputs["age"].to(device).type(torch.float)
+        pred_ages = test_model(imgs)
+        batch_loss = torch.mean(torch.abs(pred_ages.argmax(1) - ages))
+        test_loss += batch_loss
+
+    test_loss /= (i + 1)
+
+    print("Test MAE: {} with model {}".format(test_loss, best_model))
+    

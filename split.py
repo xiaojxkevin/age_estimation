@@ -3,7 +3,7 @@ import os
 
 p = [0.8, 0.1, 0.1] # train, val, test
 
-data_dir = "./data/utkface_aligned_cropped/crop_part1"
+data_dir = "./data/utkface_aligned_cropped/UTKFace"
 
 files = os.listdir(data_dir)
 np.random.shuffle(files)
