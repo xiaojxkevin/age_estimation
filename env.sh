@@ -1,1 +1,1 @@
-salloc -N 1 -n 12 --gres=gpu:NVIDIAGeForceRTX2080Ti:1
+salloc -N 1 -n 8 --gres=gpu:1

@@ -1,5 +1,5 @@
 __pycache__
 log
 private
-data
+data/utkface_aligned_cropped
 ckpts
