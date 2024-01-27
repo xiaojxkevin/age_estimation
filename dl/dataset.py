@@ -14,8 +14,8 @@ class Utkface(Dataset):
         assert split in ("train", "val", "test")
         print("----------Creating {} set----------".format(self.split))
 
-        self.data_path = os.path.join(data_dir, "utkface_aligned_cropped_stage")
-        self.split_path = os.path.join(data_dir, "split-stage", split+".txt")
+        self.data_path = os.path.join(data_dir, "utkface_aligned_cropped/UTKFace")
+        self.split_path = os.path.join(data_dir, "split", split+".txt")
         self.image_names = np.genfromtxt(self.split_path, dtype=str).tolist()
         self.trans = transforms.Compose([
             transforms.ColorJitter(brightness=0.2, contrast=0.1, saturation=0.1, hue=0.1),
