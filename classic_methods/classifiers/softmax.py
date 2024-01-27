@@ -1,7 +1,6 @@
 from builtins import range
 import numpy as np
 from random import shuffle
-from past.builtins import xrange
 
 def softmax_loss_naive(W, X, y, reg):
     """
@@ -25,13 +24,6 @@ def softmax_loss_naive(W, X, y, reg):
     loss = 0.0
     dW = np.zeros_like(W)
 
-    #############################################################################
-    # TODO: Compute the softmax loss and its gradient using explicit loops.     #
-    # Store the loss in loss and the gradient in dW. If you are not careful     #
-    # here, it is easy to run into numeric instability. Don't forget the        #
-    # regularization!                                                           #
-    #############################################################################
-    # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     num_classes = W.shape[1]
     num_train = X.shape[0]
     for i in range(num_train):
@@ -47,7 +39,6 @@ def softmax_loss_naive(W, X, y, reg):
     loss += reg * np.sum(W * W)
     dW /= num_train
     dW += 2 * reg * W
-    # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
     return loss, dW
 
@@ -62,13 +53,6 @@ def softmax_loss_vectorized(W, X, y, reg):
     loss = 0.0
     dW = np.zeros_like(W)
 
-    #############################################################################
-    # TODO: Compute the softmax loss and its gradient using no explicit loops.  #
-    # Store the loss in loss and the gradient in dW. If you are not careful     #
-    # here, it is easy to run into numeric instability. Don't forget the        #
-    # regularization!                                                           #
-    #############################################################################
-    # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     num_classes = W.shape[1]
     num_train = X.shape[0]
     scores = np.dot(X, W)
@@ -83,6 +67,5 @@ def softmax_loss_vectorized(W, X, y, reg):
     dW = np.dot(X.T, dscores)
     dW /= num_train
     dW += 2 * reg * W
-    # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
     return loss, dW
