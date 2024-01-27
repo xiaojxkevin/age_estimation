@@ -15,11 +15,12 @@ ages = {"c1": [],
         "c7": [],
         "c8": []}
 
-val_file = np.genfromtxt(val_split, dtype=str)
+# val_file = np.genfromtxt(val_split, dtype=str)
 test_file = np.genfromtxt(test_split, dtype=str)
-files = np.concatenate([val_file, test_file], axis=0)
+# files = np.concatenate([val_file, test_file], axis=0)
 # print(files.shape)
 # assert False
+files = test_file
 
 for f in files:
     w = f.split("_")
