@@ -5,6 +5,9 @@ from dl.dataset import Age
 
 @torch.no_grad()
 def test(path:str, split_path:str, device:str):
+    '''
+    Notice that for classification, we have to modify
+    '''
     model = torch.load(path, map_location=device)
     ds = Age("./data", split_path)
     ds_loader = DataLoader(ds, batch_size=1, num_workers=4)
@@ -12,9 +15,9 @@ def test(path:str, split_path:str, device:str):
     total_loss = 0
     for i, inputs in enumerate(ds_loader):
         imgs = inputs["image"].to(device)
-        ages = inputs["age"].to(device).float()
+        ages = inputs["age"].reshape([-1, 1]).to(device).float()
         pred_ages = model(imgs)
-        loss = torch.mean(torch.abs(pred_ages.argmax(1) - ages))
+        loss = torch.mean(torch.abs(pred_ages - ages))
         total_loss += loss.item()
 
     total_loss /= (i + 1)
@@ -24,7 +27,7 @@ def test(path:str, split_path:str, device:str):
 
 if __name__ == "__main__":
     device = "cuda:0"
-    path = "ckpts/2024-01-27T16:06/007.pth"
+    path = "ckpts/2024-01-27T19:01-re/045.pth"
     for c in ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"]:
         test(path, "./data/c/{}.txt".format(c), device)
     
