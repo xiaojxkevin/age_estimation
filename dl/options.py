@@ -26,52 +26,11 @@ def options_for_overall():
     opt = options()
     opt.num_class = 8
     opt.ckpt_path = "./ckpts/overall"
+    opt.log_path = "./log/overall"
     return opt
 
-def options_for_stage0():
+def options_for_stage(stage = 0):
     opt = options()
-    opt.num_class = 4
-    opt.ckpt_path = "./ckpts/stage0"
-    return opt
-
-def options_for_stage1():
-    opt = options()
-    opt.num_class = 3
-    opt.ckpt_path = "./ckpts/stage1"
-    return opt
-
-def options_for_stage2():
-    opt = options()
-    opt.num_class = 6
-    opt.ckpt_path = "./ckpts/stage2"
-    return opt
-
-def options_for_stage3():
-    opt = options()
-    opt.num_class = 9
-    opt.ckpt_path = "./ckpts/stage3"
-    return opt
-
-def options_for_stage4():
-    opt = options()
-    opt.num_class = 16
-    opt.ckpt_path = "./ckpts/stage4"
-    return opt
-
-def options_for_stage5():
-    opt = options()
-    opt.num_class = 28
-    opt.ckpt_path = "./ckpts/stage5"
-    return opt
-
-def options_for_stage6():
-    opt = options()
-    opt.num_class = 19
-    opt.ckpt_path = "./ckpts/stage6"
-    return opt
-
-def options_for_stage7():
-    opt = options()
-    opt.num_class = 116-84
-    opt.ckpt_path = "./ckpts/stage7"
+    opt.ckpt_path = "./ckpts/stage{}".format(stage)
+    opt.log_path = "./log/stage{}".format(stage)
     return opt
