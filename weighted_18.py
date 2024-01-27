@@ -16,6 +16,7 @@ opts = options()
 print(opts)
 
 device = torch.device(opts.device)
+torch.manual_seed(3407)
 torch.backends.cudnn.benchmark = True
 
 model = resnet18(pretrained=True)
@@ -26,8 +27,8 @@ model = model.to(device)
 optimizer = optim.AdamW(model.parameters(), lr=opts.lr, weight_decay=opts.weight_decay)
 lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=opts.step_size, gamma=opts.gamma)
 weight_c = torch.ones([opts.num_class], dtype=torch.float32).to(opts.device)
-w = 2
-weight_c[1:18] = w
+w = 0.5
+weight_c[18:] = w
 loss = nn.CrossEntropyLoss(weight=weight_c)
 
 train_data = Utkface(opts.data_dir, split="train")

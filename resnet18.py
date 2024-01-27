@@ -13,7 +13,10 @@ from dl.dataset import Utkface
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 
 opts = options()
+print(opts)
+
 device = torch.device(opts.device)
+torch.manual_seed(3407)
 torch.backends.cudnn.benchmark = True
 
 model = resnet18(pretrained=True)
@@ -40,7 +43,8 @@ print("eval dataset length : ", val_data_len)
 print("test dataset length :", test_data_len)
 
 current_time = time.strftime("%Y-%m-%dT%H:%M", time.localtime())
-writer = SummaryWriter(log_dir=os.path.join(opts.log_path, current_time))
+writer = SummaryWriter(log_dir=os.path.join(opts.log_path, current_time),
+                       comment="origin")
 
 best_eval_loss = float("inf")
 best_model = ""
