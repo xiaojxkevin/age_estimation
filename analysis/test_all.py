@@ -24,7 +24,7 @@ def test(path:str, split_path:str, device:str):
 
 if __name__ == "__main__":
     device = "cuda:0"
-    path = "ckpts/2024-01-27T13:08/014.pth"
+    path = "ckpts/2024-01-27T16:06/007.pth"
     for c in ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"]:
         test(path, "./data/c/{}.txt".format(c), device)
     

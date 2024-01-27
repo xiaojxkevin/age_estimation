@@ -27,8 +27,8 @@ model = model.to(device)
 optimizer = optim.AdamW(model.parameters(), lr=opts.lr, weight_decay=opts.weight_decay)
 lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=opts.step_size, gamma=opts.gamma)
 weight_c = torch.ones([opts.num_class], dtype=torch.float32).to(opts.device)
-w = 0.5
-weight_c[18:] = w
+w = 1.25
+weight_c[38:65] = w
 loss = nn.CrossEntropyLoss(weight=weight_c)
 
 train_data = Utkface(opts.data_dir, split="train")
