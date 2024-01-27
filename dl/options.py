@@ -8,8 +8,8 @@ def options():
     parser.add_argument("--log_path", type=str, default="./log", help="logs output directory")
     parser.add_argument("--ckpt_path", type=str, default="./ckpts", help="checkpoints directory")
 
-    parser.add_argument("--epochs",type=int, default=10, help="number of epochs")
-    parser.add_argument("--batch_size", type=int, default=10, help="batch size")
+    parser.add_argument("--epochs",type=int, default=30, help="number of epochs")
+    parser.add_argument("--batch_size", type=int, default=256, help="batch size")
     parser.add_argument("--lr", type=float, default=1e-3, help="learning rate")
     parser.add_argument("--weight_decay", type=float, default=1e-4, help="weight decay")
     parser.add_argument("--step_size", type=int, default=2, help="learning rate decay after how much step")
