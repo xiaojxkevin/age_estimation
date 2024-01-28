@@ -17,6 +17,7 @@
 
 ## Checkpoints
 
-We have uploaded some, if you are interested in our coarse-to-fine method, pleas contact <xiaojx@shanghaitech.edu.cn>
+We have uploaded some here, if you are interested in our coarse-to-fine method, pleas check
+[https://drive.google.com/drive/folders/1l3PR1kZpfweDzx2pR9s_x9um8_e1vXs9?usp=drive_link](https://drive.google.com/drive/folders/1l3PR1kZpfweDzx2pR9s_x9um8_e1vXs9?usp=drive_link)
 
-## Some log files are in `log`
+## log files are in `log`
