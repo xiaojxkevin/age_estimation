@@ -9,3 +9,8 @@
 ## Architecture for Coarse-to-Fine
 
 <img src="assets/model.png" width=400 height=240/>
+
+
+## CNN-Classifier validation loss
+
+<img src="assets/cnn-c-eval.png" width=400 height=240/>
