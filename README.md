@@ -14,3 +14,7 @@
 ## CNN-Classifier validation loss
 
 <img src="assets/cnn-c-eval.png" width=400 height=240/>
+
+## Checkpoints
+
+We have uploaded some, if you are interested in our coarse-to-fine method, pleas contact <xiaojx@shanghaitech.edu.cn>
