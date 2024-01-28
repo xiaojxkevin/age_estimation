@@ -18,3 +18,5 @@
 ## Checkpoints
 
 We have uploaded some, if you are interested in our coarse-to-fine method, pleas contact <xiaojx@shanghaitech.edu.cn>
+
+## Some log files are in `log`
